@@ -1,0 +1,37 @@
+    
+Copyright 2015 ThoughtWorks, Inc.
+Copyright 2015 Siddhartha Deshpande
+
+Author: Siddhartha Deshpande
+Contact : siddesh@thoughtworks.com
+
+This program is an app based on Jive Software's jive-sdk which uses node.js to run the app.
+
+This app features:
+1. Moving content
+2. Deleting in bulk
+3. Applying tags
+4. Categorising with Categories
+in the Jive system and uses jive's api to perform these actions.
+
+Parts of this program are based on:
+- The Jive SDK, Copyright 2014 Jive Software, distributed under the Apache License Version 2.0
+- JQuery, Copyright Notice, distributed under MIT license
+- The Twitter Bootstrap, Copyright 2011-2014 Twitter, Inc., distributed under Apache License Version 2.0
+- Node.js, Copyright Joyent, Inc. and other Node contributors., distributed under Apache License Version 2.0
+- Lodash, Copyright 2012-2014 The Dojo Foundation, distributed under The MIT License
+- Mustache, Copyright (c) 2009-2014: Chris Wanstrath and other contributors under The MIT License
+- Q, Copyright (c) 2011-2014 Jake Luer jake@alogicalparadox.com under The MIT License
+- Chai, Copyright (c) 2011-2014 Jake Luer jake@alogicalparadox.com under The MIT License
+- chai-as-promised, Copyright © 2012–2014 Domenic Denicola <domenic@domenicdenicola.com> and Copyright (C) 2004 Sam Hocevar <sam@hocevar.net>
+- Ramda, The MIT License (MIT), Copyright (c) 2013-2014 Scott Sauyet and Michael Hurley
+
+
+Thanks a lot to the owners / contributors of jive-sdk, jive software, node.js, jquery, twitter bootstrap, lodash, Q, mustache, chai and chai-as-promised for their efforts in their software modules, which helped us develop this app.
+
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
+

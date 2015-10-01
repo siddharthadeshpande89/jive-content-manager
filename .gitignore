@@ -1,0 +1,13 @@
+.unison/*
+node_modules
+de_modules
+.DS_Store
+*/.DS_Store
+.idea/*
+/.idea/
+extension.zip
+db/
+extension_src/
+*.pem
+*/*.pem
+apps/contentmanager/public/javascripts/.module-cache/

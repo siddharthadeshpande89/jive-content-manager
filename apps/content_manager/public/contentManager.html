@@ -1,0 +1,173 @@
+<!--
+This file is part of ContentManager.
+
+ContentManager is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ContentManager is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ContentManager.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<link rel="stylesheet" type="text/css" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
+<link rel="stylesheet" type="text/css" href="stylesheets/contentmanager.css" />
+<link rel="stylesheet" type="text/css" href="/__public__/stylesheets/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="/__public__/stylesheets/bootstrap/css/bootstrap-example.css">
+<link rel="stylesheet" type="text/css" href="/__public__/stylesheets/prettify.css">
+<link rel="stylesheet" type="text/css" href="/__public__/stylesheets/app/main.css">
+<link rel="stylesheet" href="/__public__/stylesheets/bootstrap/css/bootstrap-multiselect.css" type="text/css">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="/__public__/javascripts/libraries/bootstrap.min.js"></script>
+<script src="/__public__/javascripts/libraries/prettify.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script src="/__public__/stylesheets/bootstrap/js/bootstrap-multiselect.js"></script>
+<script src="/__public__/stylesheets/bootstrap/js/bootstrap-multiselect-collapsible-groups.js"></script>
+<script src="/__public__/javascripts/libraries/lodash.js"></script>
+<script src="/__public__/javascripts/libraries/mustache.js" ></script>
+<script src="/__public__/javascripts/libraries/q.js"></script>
+<script type="text/javascript" charset="utf-8" src="javascripts/helpers/jiveWrapper.js"></script>
+<script type="text/javascript" charset="utf-8" src="javascripts/helpers/messageViewHandler.js"></script>
+<script type="text/javascript" charset="utf-8" src="javascripts/helpers/view.js"></script>
+<script type="text/javascript" charset="utf-8" src="javascripts/helpers/validator.js"></script>
+<script type="text/javascript" charset="utf-8" src="javascripts/apps/tagManager.js"></script>
+<script type="text/javascript" charset="utf-8" src="javascripts/apps/categoryManager.js"></script>
+<script type="text/javascript" charset="utf-8" src="javascripts/apps/deleteContent.js"></script>
+<script type="text/javascript" charset="utf-8" src="javascripts/apps/moveContent.js"></script>
+<script type="text/javascript" charset="utf-8" src="javascripts/apps/contentManager.js"></script>
+
+<form id="tagManager" title="Add tags to be added to all selected content" style="display: none">
+    <div class="tag-control focus">
+        <ul id="tags" onkeydown="tagManager.addTagToList(event)">
+            <li id="inputTag">
+                <input id="tag-id" onkeydown="tagManager.checkComma(event);" type="text" maxLength="55">
+                </input>
+            </li>
+        </ul>
+    </div>
+</form>
+
+<form id="categoryManager" title="Update categories to selected content" style="display: none">
+    <div class="content-category">
+        <ul class="category-list" style="list-style-type: none;">
+        </ul>
+    </div>
+</form>
+<div id="non-admin-info" align="center">
+
+</div>
+<form id="move-content" action="">
+    <div id="tw-move-content">
+            <div class="content-actions">
+                <div class="cm-actions">
+                    <a href="#" id="target_place_picker" class="sprite-icon-list move-icon img-background" data-toggle="tooltip" data-placement="bottom" title="Move Content"></a>
+                    <a href="#" id="deleteContent" class="sprite-icon-list delete-icon img-background" data-toggle="tooltip" data-placement="bottom" title="Delete Content"></a>
+                    <a href="#" id="addTags" class="sprite-icon-list tag-icon img-background" data-toggle="tooltip" data-placement="bottom" title="Add Tags"></a>
+                    <a href="#" id="updateCategories" class="sprite-icon-list folder-icon img-background" data-toggle="tooltip" data-placement="bottom" title="Add Categories"></a>
+                </div>
+                <span id="app-message"></span>
+                <div id="filters">
+                    <div class="pull-left" id="content-type-filter">
+                        <select id="content-type-options" multiple="multiple">
+                        </select>
+                    </div>
+                    <div class="pull-left" id="authorFilters">
+                        <select id="authorFilterOption" class="form-control ">
+                            <option value="all"> Show All Content </option>
+                            <option value="self"> Show Only My Content </option>
+                        </select>
+                    </div>
+                    <div class="pull-left" id="itemsPerPage">
+                        <select id="itemsPerPageOption" class="form-control ">
+                            <option value="25"> 25 </option>
+                            <option value="50"> 50 </option>
+                            <option value="100"> 100 </option>
+                        </select>
+                    </div>
+                    <div class="pull-left" id="sortOption">
+                        <select id="sortByOption" class="form-control">
+                            <option value="latestActivityAsc"> Oldest Activity First </option>
+                            <option value="latestActivityDesc"> Latest Activity First </option>
+                            <option value="dateCreatedAsc"> Oldest Created First </option>
+                            <option value="dateCreatedDesc"> Latest Created First </option>
+                            <option value="titleAsc"> Title </option>
+                        </select>
+                    </div>
+                    <div id="pagination" class="pull-right">
+                    </div>
+                    <div id="moveContentConformation"></div>
+                </div>
+            </div>
+        <div class="well">
+            <div>
+                <a href="#" id="refreshContent">Refresh Content</a>
+                <div id="all-content">
+                    <div id="spinner">
+                        <img id="img-spinner" src="/__public__/images/app/spinner.gif" alt="Processing..."/>
+                    </div>
+                        <table class='table' id="content-table">
+                            <thead class="table-header">
+                            <tr><th>
+                            </th>
+                                <th>
+                                    <input type="checkbox" id="selectAllContent" checked class="checkbox"/>
+                                </th>
+                                <th>
+                                    <strong class='font-color-meta-light'>Title</strong>
+                                </th>
+                                <th>
+                                    <strong class='font-color-meta-light'>Type</strong>
+                                </th>
+                                <th>
+                                    <strong class='font-color-meta-light'>Author</strong>
+                                </th>
+                                <th>
+                                    <strong class='font-color-meta-light'>Latest Activity</strong>
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody id='content-body'>
+                            </tbody>
+                        </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<script id="content-list-template" type="x-tmpl-mustache">
+    {{#contentList}}
+    <tr class='content row' ><td><input class='contentCheck' id='{{contentId}}' type='checkbox' checked/> </td>
+        <td class='j-td-title'><a target='_blank' href='{{contentUrl}}'>{{contentTitle}}</a></td>
+        <td class='j-td-type'><a href='{{contentType}}'>{{contentType}}</a></td>
+        <td class='j-td-author'><a target='_blank' href='{{contentAuthorUrl}}' class='jive-username-link  jiveTT-hover-user'>{{contentAuthor}}</a></td>
+        <td class='j-td-date font-color-meta'>{{contentUpdatedDate}}</td>
+        <td class='j-td-date font-color-meta rowMessage'></td>
+    </tr>
+    {{/contentList}}
+    {{^contentList}}
+    <tr><td colspan='4'><h3>No content to display</h3></td></tr>
+    {{/contentList}};
+
+</script>
+<script id="pagination-template" type="x-tmpl-mustache">
+    {{#prevIndex}}
+        <span href="#" id="prev-btn" class="nav-buttons" data-toggle="tooltip" data-placement="bottom" title="Previous" onclick="displayContentInCurrentPlace({{prevIndex}})"></span>
+    {{/prevIndex}}
+    {{^prevIndex}}
+         <span href="#" id="prev-btn" class="nav-buttons" data-toggle="tooltip" data-placement="bottom" title="Previous" style="opacity:0.4"></span>
+    {{/prevIndex}}
+     {{#nextIndex}}
+        <span href="#" id="next-btn" class="nav-buttons" data-toggle="tooltip" data-placement="bottom" title="Next" onclick="displayContentInCurrentPlace({{nextIndex}})"></span>
+    {{/nextIndex}}
+    {{^nextIndex}}
+         <span href="#" id="next-btn" class="nav-buttons" data-toggle="tooltip" data-placement="bottom" title="Next" style="opacity:0.4"></span>
+    {{/nextIndex}}
+</script>
+<script id="message-template" type="x-tmpl-mustache">
+    <label id='move-content-message' class='alert {{messageClass}}'>{{message}}</label>
+</script>

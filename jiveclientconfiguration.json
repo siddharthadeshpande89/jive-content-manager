@@ -1,0 +1,11 @@
+{
+    "clientUrl": "localhost:8080",
+    "clientUrlExcludesPort":true,
+    "port":8080,
+    "logLevel" : "DEBUG",
+    "extensionInfo" : {
+        "uuid": "",
+        "jiveServiceSignature": "",
+        "name" : "Content Manager App"
+    }
+}

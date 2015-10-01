@@ -1,0 +1,29 @@
+span.glyphicon.glyphicon-chevron-right {
+    font-size: 20px !important;
+    margin-top: 6px !important;
+    color: #7c7c7c !important;
+}
+.well{
+    border-radius:0;
+}
+.all-content,.selected-content{
+    display: none;
+}
+.tab-content{
+    background-color: #ffffff;
+    border-left:1px solid #DDDDDD;
+    border-right:1px solid #DDDDDD;
+    border-bottom:1px solid #DDDDDD;
+    padding:20px 10px;
+}
+
+#content-types label{
+    margin:0 10px 20px 10px;
+}
+input#moveContent {
+    margin-left: 10px;
+}
+
+input#deleteContent {
+    margin-left: 10px;
+}
