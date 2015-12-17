@@ -1,4 +1,4 @@
-Content Manager App:
+## Content Manager App
 Jive app (based on node.js jive-sdk) for managing the bulk content.
 This app features:
 1. Moving content
@@ -6,33 +6,41 @@ This app features:
 3. Applying tags
 4. Categorising with Categories
 
-Primary Tech Stack:
-Node.js(server side scripting), jquery, jquery-ui, bootstrap, mustache templates, lodash, Ramda.
+#### Primary Tech Stack:
+
+* Node.js(server side scripting), 
+* jquery, 
+* jquery-ui, 
+* bootstrap, 
+* mustache templates, 
+* lodash, 
+* Ramda.
 
 
 Getting started with Jive node sdk Please refer Jive's official document at https://community.jivesoftware.com/docs/DOC-114053
 
-Steps to install Content Manager App:
- Assuming you ave gone through the above documentation from Jive
+## Steps to install Content Manager App
+Assuming you ave gone through the above documentation from Jive
 
-Checkout the code
-put your node.js jive-sdk server's url in jiveclientconfiguration.json
-run command "npm update" to download all the dependencies of this app.
-Run command "node app" which will start the server and also generate an extension.zip
-Upload the extension.zip to you Jive instance as mentioned in this offical jive document.
+#### Checkout the code
+1. Put your node.js jive-sdk server's url in __jiveclientconfiguration.json__
+1. Run command "npm update" to download all the dependencies of this app.
+1. Run command "node app" which will start the server and also generate an extension.zip
+1. Upload the extension.zip to you Jive instance as mentioned in this offical jive document.
 
-What is jiveclientconfiguration.json?
+#### What is jiveclientconfiguration.json?
 
 Generate new uuid using
-var jive  =require('jive-sdk');
+```javascript
+var jive = require('jive-sdk');
 jive.util.guid()
-
+```
 
 Please note that you will need to add jiveServiceSignature in jiveclientconfiguration.json (which can be generated for given uuid
 from jive add on console by Command + Right click on upload package button
 
-example of jiveclientconfiguration
-
+Example of jiveclientconfiguration
+```json
 {
     "clientUrl": "url of local machine which is accessible by jive uat",
     "port": "port of local machine",
@@ -43,8 +51,10 @@ example of jiveclientconfiguration
         "name" : "local Admin Essentials"
     }
 }
+```
 
-Code Structure:
+#### Code Structure:
+```
 +apps
 -->content_manager
   -->public
@@ -67,8 +77,8 @@ Code Structure:
       -> update_categories_tags.js
 
 + group.js, content.js - Server side helper classes
-
-How to Use the app:
+```
+#### How to Use the app:
 1. Select the content to be updated
 2. Select the operation from the operation options
 3. Confirm the operation
